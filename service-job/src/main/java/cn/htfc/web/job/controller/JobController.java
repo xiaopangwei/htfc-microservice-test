@@ -1,6 +1,6 @@
-package cn.htfc.web.controller;
+package cn.htfc.web.job.controller;
 
-import cn.htfc.web.service.IJobService;
+import cn.htfc.web.job.service.IJobService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +28,7 @@ public class JobController {
 
     @PostMapping("/zhhtJob/insert")
     public String add(String jobId, String jobName, String type) throws InterruptedException {
+        log.info("insert job");
         iJobService.add(jobId, jobName, type);
         return jobId;
     }
@@ -35,6 +36,7 @@ public class JobController {
 
     @GetMapping("/zhhtJob/query")
     public String query(String jobId) throws InterruptedException {
+        log.info("query job");
         Map<String, Object> ans = iJobService.query(jobId);
         return (String) ans.getOrDefault("count", "0");
     }
