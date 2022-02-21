@@ -3,7 +3,7 @@ nsf:
   version: '2.0'
   nsfServer: 'http://nsf-server-cust92-env2.netease.com'
   application:
-    name: hw-stock-viewer
+    name: hw-job-service
     version: 0.0.1
     projectCode: htqh-default
     envCode: prod2
@@ -14,11 +14,11 @@ nsf:
     # 方法配置
   manager:
     patterns:
-      - className: com.netease.cloud.nsf.demo.stock.viewer.web.service.impl.*
+      - className: cn.htfc.web.job.service.impl.*
 
   config:
     enable: true
-    appId: hw-stock-viewer
+    appId: hw-job-service
     env: dev
     #    server: http://10.182.2.108:10780/
     namespaces:

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.Random;
 
 /**
  * <p>Description: </p>
@@ -27,10 +28,25 @@ public class JobController {
     IJobService iJobService;
 
     @PostMapping("/zhhtJob/insert")
-    public String add(String jobId, String jobName, String type) throws InterruptedException {
-        log.info("insert job");
-        iJobService.add(jobId, jobName, type);
-        return jobId;
+    public String add(String jobName) throws InterruptedException {
+        StringBuilder stringBuilder = new StringBuilder();
+        String        randomId      = null;
+        Random        random        = new Random();
+        while (true) {
+            for (int i = 0; i < 8; i++) {
+                stringBuilder.append(String.valueOf(random.nextInt(9) + 1));
+            }
+            randomId = stringBuilder.toString();
+            //如果跟数据库重复
+            Map<String, Object> map = iJobService.query(randomId);
+            if ((Long) (map.getOrDefault("cnt", 0)) == 0) {
+                break;
+            }
+            stringBuilder.setLength(0);
+        }
+        String type = String.valueOf(new Random().nextInt(2));
+        iJobService.add(randomId, jobName, type);
+        return randomId;
     }
 
 
@@ -38,7 +54,8 @@ public class JobController {
     public String query(String jobId) throws InterruptedException {
         log.info("query job");
         Map<String, Object> ans = iJobService.query(jobId);
-        return (String) ans.getOrDefault("count", "0");
+        System.out.println(ans);
+        return String.valueOf(ans.getOrDefault("cnt", 0));
     }
 
 }
