@@ -14,6 +14,6 @@ public interface BrokerMapper {
 
 
     void addBroker(@Param("jobId") String jobId, @Param("serviceId") String serviceId,
-                   @Param("custId") String custId, @Param("custName") String custName,
+                   @Param("custNum") String custNum, @Param("custName") String custName,
                    @Param("custMobile") String custMobile);
 }

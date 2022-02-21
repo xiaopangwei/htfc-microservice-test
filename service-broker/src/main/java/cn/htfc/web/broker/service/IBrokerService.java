@@ -9,6 +9,5 @@ package cn.htfc.web.broker.service;
  * @time 3:28 PM
  */
 public interface IBrokerService {
-    void add(String serviceId, String custId, String jobId,String custName,String custMobile);
-
+    void add(String serviceId, String custNum, String jobId,String custName,String custMobile);
 }

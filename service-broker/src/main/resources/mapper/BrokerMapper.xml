@@ -5,6 +5,6 @@
 
     <insert id="addBroker">
        INSERT INTO ZHHT_JOB_CUST_BROKER(JOB_ID,SERVICE_ID,CUST_NUM,CUST_NAME,CUST_MOBILE)
-       VALUES (#{jobId},#{serviceId},#{custId},#{custName},#{custMobile})
+       VALUES (#{jobId},#{serviceId},#{custNum},#{custName},#{custMobile})
     </insert>
 </mapper>

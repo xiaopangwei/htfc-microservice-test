@@ -1,5 +1,6 @@
 package cn.htfc.web.broker.controller;
 
+import cn.htfc.web.broker.model.BrokerResponse;
 import cn.htfc.web.broker.service.IBrokerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +25,16 @@ public class BrokerController {
     IBrokerService iBrokerService;
 
     @PostMapping("/zhhtCustBroker/insert")
-    public String add(String jobId, String custName, String custId, String serviceId, String custMobile) throws InterruptedException {
-        log.info("insert job");
-        iBrokerService.add(serviceId, custId, jobId, custName, custMobile);
-        return "success";
+    public BrokerResponse add(String jobId, String custName, String custNum, String custMobile) throws InterruptedException {
+        log.info("start to add broker...jobId:[{}],custName:[{}],custNum:[{}],custMobile:[{}]", jobId, custName, custNum, custMobile);
+        String serviceId = jobId + custNum;
+        iBrokerService.add(serviceId, custNum, jobId, custName, custMobile);
+        BrokerResponse response = new BrokerResponse();
+        response.setCustNum(custNum);
+        response.setJobId(jobId);
+        response.setServiceId(serviceId);
+        log.info("success to add broker...jobId:[{}],custName:[{}],custNum:[{}],custMobile:[{}]", jobId, custName, custNum, custMobile);
+        return response;
     }
 
 }

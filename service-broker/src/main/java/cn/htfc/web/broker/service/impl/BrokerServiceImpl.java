@@ -20,7 +20,7 @@ public class BrokerServiceImpl implements IBrokerService {
 
 
     @Override
-    public void add(String serviceId, String custId, String jobId, String custName, String custMobile) {
-        brokerMapper.addBroker(jobId, serviceId, custId, custName, custMobile);
+    public void add(String serviceId, String custNum, String jobId, String custName, String custMobile) {
+        brokerMapper.addBroker(jobId, serviceId, custNum, custName, custMobile);
     }
 }
