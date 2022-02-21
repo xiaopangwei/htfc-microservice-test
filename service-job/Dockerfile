@@ -17,6 +17,6 @@ RUN mkdir -p /opt/apm && cd /opt/apm && \
 
 ADD ./*/target/classes/napm-agent.properties /opt/apm/
 
-ADD ./*/target/nsf*.jar /app.jar
+ADD ./*/target/service-*.jar /app.jar
 
 ENTRYPOINT ["java","-Xms512m","-Xmx1024m","-Dserver.port=8080","-Dbroker.service.url=http://hw-broker-service","-Dnsf.prometheus.enable=true","-javaagent:/opt/nsf/nsf-agent.jar=nsf-cust92","-javaagent:/opt/apm/napm-java-agent/napm-java-rewriter.jar=conf=napm-agent.properties","-jar","/app.jar"]
